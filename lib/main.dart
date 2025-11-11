@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
     return Consumer<SettingModel>(
       builder: (BuildContext context, settingModel, Widget? child) {
         return MaterialApp(
+          title: StringResources.getString('app_name'),
           debugShowCheckedModeBanner:false,
           theme: ThemeData(
             useMaterial3: true,
