@@ -84,7 +84,7 @@ class _AboutPageState extends State<AboutPage> {
             children: [
               _buildInfoItem(
                 icon: Icons.balance,
-                title: 'AGPL3.0 License',
+                title: 'GPL3.0 License',
                 value: StringResources.getString('ui_license_desc'),
                 showTrailing: true,
                 onTap: ()=>_launchUrl('https://github.com/hakua251/minecraft_server_checker/blob/main/LICENSE')
