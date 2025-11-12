@@ -39,58 +39,61 @@ class _ServerCardState extends State<ServerCard> {
       onLongPress: (){
         _showPopupMenu(context);
       },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FadeInImage(
-                width: 64,
-                height: 64,
-                image: widget.model.iconBase64 == '' ?
-                      (AssetImage('assets/images/unknown_server.png') as ImageProvider):
-                      (MemoryImage(base64.decode(widget.model.iconBase64.split(',').last)) as ImageProvider),
-                placeholder: AssetImage('assets/images/unknown_server.png'),
-              ),
-              SizedBox(width: 10.0,),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(widget.model.serverName,maxLines: 1,style: theme.textTheme.titleLarge),
-                    widget.model.valid ? Text(widget.model.serverMotd.trim(),maxLines: 1,):Text('无法连接到服务器',maxLines: 1,style: TextStyle(color: Colors.red),),
-                    widget.model.valid ? Row(
-                      children: [
-                        ServerTags(tag: widget.model.edition),
-                        ServerTags(tag: widget.model.version),
-                      ],
-                    ):Container()
-                  ],
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FadeInImage(
+                  width: 64,
+                  height: 64,
+                  image: widget.model.iconBase64 == '' ?
+                        (AssetImage('assets/images/unknown_server.png') as ImageProvider):
+                        (MemoryImage(base64.decode(widget.model.iconBase64.split(',').last)) as ImageProvider),
+                  placeholder: AssetImage('assets/images/unknown_server.png'),
                 ),
-              ),
-              SizedBox(width: 10.0,),
-              widget.model.valid ? Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Row(
+                SizedBox(width: 10.0,),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${widget.model.onlinePlayers}/${widget.model.maxPlayers}',style: theme.textTheme.bodyLarge,),
+                      Text(widget.model.serverName,maxLines: 1,style: theme.textTheme.titleLarge),
+                      widget.model.valid ? Text(widget.model.serverMotd.trim(),maxLines: 1,):Text('无法连接到服务器',maxLines: 1,style: TextStyle(color: Colors.red),),
+                      widget.model.valid ? Row(
+                        children: [
+                          ServerTags(tag: widget.model.edition),
+                          ServerTags(tag: widget.model.version),
+                        ],
+                      ):Container()
                     ],
                   ),
-                  TextButton(
-                      onPressed: null,
-                      child: Text('${widget.model.latency}ms',
-                        style: TextStyle(
-                            color:
-                            widget.model.latency<100 ? Colors.green :
-                            widget.model.latency<200 ? Colors.orange :Colors.red ),)
-                  ),
-                ],
-              ) : Icon(Icons.close,color: Colors.red,size: 40,)
-            ],
+                ),
+                SizedBox(width: 10.0,),
+                widget.model.valid ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: [
+                        Text('${widget.model.onlinePlayers}/${widget.model.maxPlayers}',style: theme.textTheme.bodyLarge,),
+                      ],
+                    ),
+                    TextButton(
+                        onPressed: null,
+                        child: Text('${widget.model.latency}ms',
+                          style: TextStyle(
+                              color:
+                              widget.model.latency<100 ? Colors.green :
+                              widget.model.latency<200 ? Colors.orange :Colors.red ),)
+                    ),
+                  ],
+                ) : Icon(Icons.close,color: Colors.red,size: 40,)
+              ],
+            ),
           ),
         ),
       ),
