@@ -44,7 +44,7 @@ class _AboutPageState extends State<AboutPage> {
               _buildInfoItem(
                 icon: Icons.info_outline,
                 title: StringResources.getString('ui_current_version'),
-                value: 'v1.0.0',
+                value: 'v1.0.1',
               ),
               //TODO
               // _buildInfoItem(
